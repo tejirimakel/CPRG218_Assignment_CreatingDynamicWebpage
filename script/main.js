@@ -9,7 +9,8 @@
  * 7.) There are 3 task in this that you have to complete. Discuss with your instructor to understand the task.
  */
 
-const myApiKey = ""; // <<-- ADD YOUR API KEY HERE. DELETE THIS KEY before uploading your code on Github or Brightspace, 
+const myApiKey = ""; // <<-- ADD YOUR API KEY HERE. DELETE THIS KEY before uploading your code on Github or Brightspace,
+
 
 const BASE_URL = "http://www.omdbapi.com";
 
@@ -125,6 +126,11 @@ async function getMovies(movieTitle) {
              * Else write a for loop which will iterator over filteredMovies array 
              * and call createMovieCard() for each movie object in this array.
              */
+            if(filteredMovies.length == 0) {
+                createEmptyView();
+            } else {
+                filteredMovies.forEach(movie => createMovieCard(movie));
+            }
 
         }
     } catch(exception) {
@@ -169,6 +175,14 @@ function createEmptyView() {
      * TASK : 2
      * Create empty view and append it to "movieCards" section.
      */
+    const noResult = createHtmlElement("p", ["noresult"], "No movie found!!! Please search for another title.");
+    const movieCardsSection = document.getElementById("movieCards");
+    movieCardsSection.appendChild(noResult);
+    console.log("Empty view created");
+    console.log(noResult);
+    console.log("Appended to movieCards section");
+    console.log(movieCardsSection);
+    console.log("createEmptyView completed");
 
 }
 
@@ -191,5 +205,18 @@ function createMovieCard(movie) {
      * TASK : 3
      * Create Movie Card and append it "movieCards" section.
      */
+    const card = createHtmlElement("article", ["card"]);
+    const cardTitle = createHtmlElement("p", ["cardTitle"], movie.Title);
+    const cardPosterDiv = createHtmlElement("div", ["cardPosterDiv"]);
+    const moviePoster = createHtmlElement("img", ["moviePoster"]);
+    moviePoster.src = movie.Poster;
+    moviePoster.alt = "Movie poster";
+    cardPosterDiv.appendChild(moviePoster);
+    card.appendChild(cardTitle);
+    card.appendChild(cardPosterDiv);
+    const movieCardsSection = document.getElementById("movieCards");
+    movieCardsSection.appendChild(card);
+    console.log("Movie card created");
+    console.log(card);
 
 }
