@@ -1,13 +1,25 @@
+:root {
+    --primary-bg: rgba(0, 0, 0, 0.9);
+    --accent-color: royalblue;
+    --text-light: whitesmoke;
+    --bg-color: aliceblue;
+    --font-sm: 0.8rem;
+    --font-xs: 0.5rem;
+    --font-md: 1.2rem;
+    --card-bg: #ffffff;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: whitesmoke
+    color: var(--text-light);
 }
 
 body {
-    background-color: aliceblue;
+    background-color: var(--bg-color);
     position: relative;
 }
 
@@ -16,20 +28,20 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    text-align: center;
     height: 50px;
-    background-color: rgba(0,0,0,.44);
-    color: whitesmoke;
-    font-size: 0.5rem;
+    background-color: var(--primary-bg);
+    color: var(--text-light);
+    font-size: var(--font-xs);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.highlight, a {
+.highlight,
+a {
     text-decoration: none;
-    font-size: 0.8rem;
-    color: royalblue;
+    font-size: var(--font-sm);
+    color: var(--accent-color);
 }
 
 header {
@@ -38,15 +50,18 @@ header {
     left: 0;
     width: 100%;
     height: 80px;
-    background-color: rgba(0,0,0,.44);;
+    background-color: var(--primary-bg);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    z-index: 1000;
+    color: var(--text-light);
 }
 
 #aboutDiv {
     text-align: center;
+    padding: 20px;
 }
 
 #aboutWebsite {
@@ -57,16 +72,22 @@ header {
     position: fixed;
     top: 20px;
     right: 10px;
-    font-size: 1.2rem;
-    color: white;
-    border: 2px solid white;
-    /* padding: 5px; */
+    font-size: var(--font-md);
+    color: var(--text-light);
+    border: 2px solid var(--text-light);
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 36px;
+    height: 36px;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.link:hover {
+    background-color: var(--text-light);
+    color: var(--primary-bg);
 }
 
 #mainBody {
@@ -75,68 +96,168 @@ header {
     left: 0;
     width: 100%;
     height: calc(100vh - 80px - 50px);
+    overflow-y: auto;
 }
 
 section {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
-    padding: 0 40px;
-    padding-top: 20px;
 }
 
 #searchBar {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 8px;
     height: 50px;
-    border: 1px solid black;
-    padding: 10px;
-    color: black;
-    padding-right: 50px;
-    font-size: 1.2rem;
+    padding: 0 50px 0 15px;
+    border: 1px solid #ccc;
+    font-size: var(--font-md);
+    color: #333;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #searchDiv {
-    position: relative;
-    margin-bottom: 30px;
+    position: fixed;
+    margin: 30px 80px;
+    width: 85%;
+    z-index: 999;
 }
 
 #searchIconDiv {
-    width: 40px;
+    width: 45px;
     height: 100%;
     position: absolute;
     top: 0;
     right: 0;
     overflow: hidden;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    border-left: 2px solid rgba(0, 0, 0, 0.2);
 }
 
 #icon {
-    max-width: 100%;
-    max-height: 100%;
-    height: auto;
-    width: auto;
-    border-left: 2px solid rgba(0,0,0,0.33);
-    padding-left: 5px;
+    width: 25px;
+    height: 25px;
 }
 
 #movieCards {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    overflow-y: scroll;
     gap: 20px;
-    height: calc(100vh - 50px - 30px - 50px);
+    padding: 10px;
+    height: auto;
+    margin-top: 7rem;
 }
 
 .noresult {
     color: red;
-    font-size: 1.2rem;
-    padding: 10px;
+    font-size: var(--font-md);
+    padding: 10px 20px;
     border: 1px solid red;
     border-radius: 10px;
+    background: #ffe5e5;
 }
 
+
 /* Implement your styling here */
+
+.card {
+    width: 300px;
+    background-color: #000000;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.5s ease-in-out;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  }
+  
+  .cardTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 12px 0;
+    padding: 0 10px;
+    color: #eee;
+  }
+  
+  .cardPosterDiv {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+  
+  .moviePoster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .card {
+      width: 100%;
+      max-width: 400px;
+    }
+  
+    .cardPosterDiv {
+      height: auto;
+    }
+  
+    .cardTitle {
+      font-size: 0.95rem;
+      color: #eee;
+    }
+  
+    .link {
+      top: 15px;
+      right: 8px;
+      width: 32px;
+      height: 32px;
+      font-size: 1rem;
+    }
+  
+    #mainBody {
+      top: 60px;
+      height: calc(100vh - 110px);
+    }
+  
+    #searchDiv {
+      width: 100%;
+      margin: 20px 0;
+      max-width: 500px;
+    }
+  
+    #searchBar {
+      font-size: 1rem;
+      padding-right: 45px;
+    }
+  
+    footer {
+      font-size: 0.6rem;
+      height: 40px;
+    }
+  }
